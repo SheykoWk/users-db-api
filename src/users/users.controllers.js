@@ -24,9 +24,33 @@ const createUser = async (userObj) => {
     return newUser
 }
 
+const updateUser = async(id, userObj) => {
+
+    const selectedUser = await Users.findOne({
+        where: {
+            id: id
+        }
+    })
+    
+    if(!selectedUser) return null
+
+    const modifiedUser = await selectedUser.update(userObj)
+    return modifiedUser
+}
+
+const deleteUser = async(id) => {
+    const user = await Users.destroy({
+        where: {
+            id: id
+        }
+    })
+    return user // 1 || 0
+}
 
 module.exports = {
     findAllUsers,
     findUserById,
     createUser,
+    updateUser,
+    deleteUser
 }
