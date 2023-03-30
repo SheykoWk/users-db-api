@@ -4,6 +4,7 @@ require('dotenv').config()
 
 const userRouter = require('./users/users.router')
 const db = require('./utils/database')
+const initModels = require('./models/initModels')
 const app = express()
 
 const PORT = process.env.PORT || 3000
@@ -17,6 +18,8 @@ db.authenticate()
 db.sync()
     .then(() => console.log('Database Synced!'))
     .catch(err => console.log(err))
+    
+initModels()
 
 app.use(express.json())
 app.use(cors())
