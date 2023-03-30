@@ -14,7 +14,9 @@ db.authenticate()
     .then(() => console.log('Database Authenticated!'))
     .catch(err => console.log(err))
 
-    
+db.sync()
+    .then(() => console.log('Database Synced!'))
+    .catch(err => console.log(err))
 
 app.use(express.json())
 app.use(cors())
