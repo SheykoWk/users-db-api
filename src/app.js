@@ -3,6 +3,8 @@ const cors = require('cors')
 require('dotenv').config()
 
 const userRouter = require('./users/users.router')
+const postRouter = require('./posts/posts.router')
+
 const db = require('./utils/database')
 const initModels = require('./models/initModels')
 const app = express()
@@ -33,6 +35,7 @@ app.get('/', (req, res) => {
 }) 
 
 app.use('/', userRouter)
+app.use('/', postRouter)
 
 app.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`)
